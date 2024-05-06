@@ -1,6 +1,6 @@
-export default defineEventHandler((event) => {
+export default defineEventHandler(async(event) => {
     try{
-        const rooms = fetch('https://zokapi.singhasoft.com/api/v1/rooms')
+        const rooms = await $fetch('https://zokapi.singhasoft.com/api/v1/rooms')
         return rooms
     }catch(e){
         console.log(e)

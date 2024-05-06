@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- {{ room }} -->
+    {{ room }}
     <el-descriptions
       class="margin-top"
       title="ລາຍລະອຽດຫ້ອງ"
@@ -119,14 +119,11 @@
   
 <script setup>
 const route = useRoute();
-const { pending, data: room } = await useLazyAsyncData("RoomDetail", () =>
-  $fetch(`/api/room/${route.query.rm_no}`)
-);
-
+const { data: room, pending, error, getRoomDetail } = useRoom();
 //   const deleteRow = (index: number) => {
 //     tableData.value.splice(index, 1)
 //   }
-
+await getRoomDetail(route.query.rm_no);
 //   const onAddItem = () => {
 //     now.setDate(now.getDate() + 1)
 //     tableData.value.push({
